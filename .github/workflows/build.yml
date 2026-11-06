@@ -1,10 +1,18 @@
-name: Build and publish plugins
+name: Build
+
+concurrency:
+  group: "build"
+  cancel-in-progress: true
 
 on:
   push:
-    branches:
-      - main
+    branches: [master, main]
+    paths-ignore: ['*.md']
   workflow_dispatch:
+
+# allow the job to push the built plugin to the "builds" branch
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -13,26 +21,60 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          path: "src"
 
-      - name: Set up JDK 17
+      - name: Checkout builds (missing on first run)
+        uses: actions/checkout@v4
+        continue-on-error: true
+        with:
+          ref: "builds"
+          path: "builds"
+
+      - name: Prepare builds branch
+        run: |
+          if [ ! -d "$GITHUB_WORKSPACE/builds/.git" ]; then
+            rm -rf "$GITHUB_WORKSPACE/builds" && mkdir -p "$GITHUB_WORKSPACE/builds"
+            cd "$GITHUB_WORKSPACE/builds"
+            git init -q
+            git checkout -q -b builds
+            git remote add origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+          fi
+          rm -f "$GITHUB_WORKSPACE"/builds/*.cs3
+
+      - name: Setup JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          distribution: temurin
+          java-version: 17
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
 
       - name: Build plugins
-        run: ./gradlew make
+        run: |
+          cd "$GITHUB_WORKSPACE/src"
+          chmod +x gradlew
+          ./gradlew make makePluginsJson
+          cp */build/*.cs3 "$GITHUB_WORKSPACE/builds"
+          cp build/plugins.json "$GITHUB_WORKSPACE/builds"
 
-      - name: Deploy to builds branch
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
-          publish_branch: builds
+      - name: Write repo.json
+        run: |
+          cat > "$GITHUB_WORKSPACE/builds/repo.json" <<EOF
+          {
+            "name": "Milano",
+            "description": "Nguồn phim KKPhim cho CloudStream",
+            "manifestVersion": 1,
+            "pluginLists": ["https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/builds/plugins.json"]
+          }
+          EOF
+          echo "Repo URL: https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/builds/repo.json"
+
+      - name: Push builds
+        run: |
+          cd "$GITHUB_WORKSPACE/builds"
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add .
+          git commit -q --amend -m "Build $GITHUB_SHA" 2>/dev/null || git commit -q -m "Build $GITHUB_SHA" || exit 0
+          git push --force origin HEAD:builds
