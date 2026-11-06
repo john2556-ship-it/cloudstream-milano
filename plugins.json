@@ -1,0 +1,25 @@
+[
+    {
+        "url": "https://raw.githubusercontent.com/john2556-ship-it/cloudstream-milano/builds/KKPhim.cs3",
+        "status": 1,
+        "version": 3,
+        "name": "KKPhim",
+        "internalName": "KKPhim",
+        "authors": [
+            "Milano"
+        ],
+        "description": "Phim b\u1ed9, phim l\u1ebb, ho\u1ea1t h\u00ecnh, TV shows t\u1eeb Milano (phimapi.com) \u2014 Vietsub, Thuy\u1ebft minh, L\u1ed3ng ti\u1ebfng",
+        "fileSize": 17293,
+        "repositoryUrl": "https://github.com/john2556-ship-it/cloudstream-milano",
+        "language": "vi",
+        "tvTypes": [
+            "TvSeries",
+            "Movie",
+            "Cartoon",
+            "AsianDrama"
+        ],
+        "iconUrl": "https://www.google.com/s2/favicons?domain=kkphim.com&sz=%size%",
+        "apiVersion": 1,
+        "fileHash": "sha256-c032c9f40df5a6043d46b7c80c04e35e1934f3a30c624a457471e3476330be7b"
+    }
+]
