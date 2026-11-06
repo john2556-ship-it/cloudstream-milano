@@ -14,8 +14,8 @@ buildscript {
     }
     dependencies {
         classpath("com.android.tools.build:gradle:9.1.1")
-        // CloudStream gradle plugin, pinned to the commit that moved to AGP 9.1 / Kotlin 2.4
-        classpath("com.github.recloudstream:gradle:32895aedb6")
+        // CloudStream gradle plugin (latest = the AGP 9.1 / Kotlin 2.4 version)
+        classpath("com.github.recloudstream:gradle:-SNAPSHOT")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.0")
     }
 }
