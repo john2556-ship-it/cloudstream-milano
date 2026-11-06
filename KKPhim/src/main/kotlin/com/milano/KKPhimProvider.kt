@@ -6,6 +6,7 @@ import com.lagradost.cloudstream3.LoadResponse.Companion.addTrailer
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream3.utils.Qualities
+import com.lagradost.cloudstream3.utils.newExtractorLink
 import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URLEncoder
@@ -171,15 +172,13 @@ class KKPhimProvider : MainAPI() {
             val o = arr.optJSONObject(i) ?: continue
             val url = o.optString("url")
             if (url.isBlank()) continue
+            // newExtractorLink (not the ExtractorLink constructor): the constructor's parameters change
+            // between CloudStream versions (pre-release added audioTracks), so a plugin built against the
+            // pre-release stubs crashes on an older app with "No link found".
             callback(
-                ExtractorLink(
-                    source = name,
-                    name = "$name · ${o.optString("server")}",
-                    url = url,
-                    referer = "https://phim1280.tv/",
-                    quality = Qualities.Unknown.value,
-                    type = ExtractorLinkType.M3U8
-                )
+                newExtractorLink(name, "$name · ${o.optString("server")}", url, ExtractorLinkType.M3U8) {
+                    quality = Qualities.Unknown.value
+                }
             )
             found = true
         }
