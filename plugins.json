@@ -1,0 +1,25 @@
+[
+    {
+        "url": "https://raw.githubusercontent.com/john2556-ship-it/cloudstream-milano/builds/Milano.cs3",
+        "status": 1,
+        "version": 4,
+        "name": "Milano",
+        "internalName": "Milano",
+        "authors": [
+            "Milano"
+        ],
+        "description": "Phim b\u1ed9, phim l\u1ebb, ho\u1ea1t h\u00ecnh, TV shows t\u1eeb Milano (phimapi.com) \u2014 Vietsub, Thuy\u1ebft minh, L\u1ed3ng ti\u1ebfng",
+        "fileSize": 17286,
+        "repositoryUrl": "https://github.com/john2556-ship-it/cloudstream-milano",
+        "language": "vi",
+        "tvTypes": [
+            "TvSeries",
+            "Movie",
+            "Cartoon",
+            "AsianDrama"
+        ],
+        "iconUrl": "https://www.google.com/s2/favicons?domain=kkphim.com&sz=%size%",
+        "apiVersion": 1,
+        "fileHash": "sha256-41053ddea41dd656c620f5fd12738c0929441738ce33d20bf010f838891b606d"
+    }
+]
