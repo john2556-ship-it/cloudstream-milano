@@ -1,0 +1,6 @@
+{
+  "name": "Milano",
+  "description": "Nguồn phim KKPhim cho CloudStream",
+  "manifestVersion": 1,
+  "pluginLists": ["https://raw.githubusercontent.com/john2556-ship-it/cloudstream-milano/builds/plugins.json"]
+}
