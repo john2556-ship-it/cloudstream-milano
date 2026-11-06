@@ -49,6 +49,9 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v4.0.1
+        with:
+          # the default list still includes 'tools', which Google removed from the SDK
+          packages: 'platform-tools'
 
       - name: Build plugins
         run: |
