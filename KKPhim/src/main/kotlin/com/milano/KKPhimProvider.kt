@@ -16,7 +16,7 @@ import java.net.URLEncoder
  */
 class KKPhimProvider : MainAPI() {
     override var mainUrl = "https://phimapi.com"
-    override var name = "KKPhim"
+    override var name = "MILANO"
     override var lang = "vi"
     override val hasMainPage = true
     override val hasQuickSearch = false
