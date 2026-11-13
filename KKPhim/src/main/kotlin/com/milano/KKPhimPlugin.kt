@@ -5,7 +5,7 @@ import com.lagradost.cloudstream3.plugins.CloudstreamPlugin
 import com.lagradost.cloudstream3.plugins.Plugin
 
 @CloudstreamPlugin
-class KKPhimPlugin : Plugin() {
+class MilanoPlugin : Plugin() {
     override fun load(context: Context) {
         registerMainAPI(KKPhimProvider())
     }
