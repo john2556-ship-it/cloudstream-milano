@@ -66,7 +66,7 @@ jobs:
           cat > "$GITHUB_WORKSPACE/builds/repo.json" <<EOF
           {
             "name": "Milano",
-            "description": "Nguồn phim KKPhim cho CloudStream",
+            "description": "Nguồn phim Milano cho CloudStream",
             "manifestVersion": 1,
             "pluginLists": ["https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/builds/plugins.json"]
           }

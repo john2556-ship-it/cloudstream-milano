@@ -16,8 +16,8 @@ Plugin CloudStream đọc phim từ KKPhim (phimapi.com), dùng cùng API với 
 
 ## Thêm vào CloudStream (Android TV)
 
-Vào **Settings → Extensions → Add repository**, dán link ở bước 4, rồi cài **KKPhim**.
+Vào **Settings → Extensions → Add repository**, dán link ở bước 4, rồi cài **Milano**.
 
 ## Cập nhật plugin
 
-Sửa code, tăng `version` trong `KKPhim/build.gradle.kts`, rồi đẩy lên GitHub. GitHub tự build lại, CloudStream sẽ báo có bản mới.
+Sửa code, tăng `version` trong `Milano/build.gradle.kts`, rồi đẩy lên GitHub. GitHub tự build lại, CloudStream sẽ báo có bản mới.

@@ -1,5 +1,5 @@
 // Use an integer for version numbers
-version = 3
+version = 4
 
 cloudstream {
     description = "Phim bộ, phim lẻ, hoạt hình, TV shows từ Milano (phimapi.com) — Vietsub, Thuyết minh, Lồng tiếng"
